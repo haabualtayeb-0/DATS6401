@@ -6,6 +6,5 @@ matplotlib
 seaborn
 plotly.express
 matplotlib.pyplot
-sklearn.preprocessing
-sklearn.decomposition
+scikit-learn
 
