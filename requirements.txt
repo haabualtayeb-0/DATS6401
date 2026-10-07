@@ -6,4 +6,6 @@ matplotlib
 seaborn
 plotly.express
 scikit-learn
-
+networkx
+pyvis
+scipy
