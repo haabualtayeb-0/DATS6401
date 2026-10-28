@@ -10,7 +10,8 @@ from sklearn.ensemble import RandomForestClassifier
 from sklearn.linear_model import LogisticRegression
 from sklearn.model_selection import train_test_split
 
-ROOT = Path(__file__).parent / "data-8"
+ROOT = Path(__file__).parent
+CLASSES = ["cats", "dogs", "flowers"]
 EXTS = {".jpg", ".jpeg", ".png", ".bmp"}
 SIZE = 128
 
@@ -29,7 +30,7 @@ def to_features(arr):
 
 @st.cache_data
 def load_data():
-    classes = sorted(d.name for d in ROOT.iterdir() if d.is_dir() and d.name != "data")
+    classes = [c for c in CLASSES if (ROOT / c).is_dir()]
     images, labels, paths = [], [], []
     for cls in classes:
         for p in sorted((ROOT / cls).iterdir()):
@@ -120,7 +121,7 @@ elif page == "Dataset Overview":
 
     st.subheader("Mean Image per Class")
     st.caption("Blurry means the class is varied; a clear shape means similar framing.")
-    fig, axes = plt.subplots(1, len(classes), figsize=(14, 2.4))
+    fig, axes = plt.subplots(1, len(classes), figsize=(2.6 * len(classes), 2.6))
     for cls, ax in zip(classes, axes):
         ax.imshow(images[labels == cls].mean(axis=0) / 255)
         ax.set_title(cls.capitalize(), fontsize=9); ax.axis("off")
