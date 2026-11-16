@@ -10,3 +10,8 @@ matplotlib
 seaborn
 pyvis
 scipy
+streamlit>=1.40
+pandas
+geopandas>=1.0
+plotly>=5.20
+numpy
